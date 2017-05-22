@@ -1,0 +1,3 @@
+[submodule "bsp/stm32f4_driver"]
+	path = bsp/stm32f4_driver
+	url = git@github.com:daxiong930/stm32f4_driver.git
