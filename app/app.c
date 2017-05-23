@@ -150,17 +150,16 @@ static  void  AppTaskStart (void *p_arg)
 #endif
     APP_TRACE_DBG(("Creating Application Kernel Objects\n\r"));
     // SensorTaskCreate();                                             /* Create Applicaiton kernel objects                    */
-
+    MPU6050_TaskCreate();
+    AK8975_TaskCreate();
+    MS5611_TaskCreate();
     APP_TRACE_DBG(("Creating Application Tasks\n\r"));
 
     while (DEF_TRUE) {                                          /* Task body, always written as an infinite loop.       */
         LED_GREEN_ON();
-        // LED_RED_OFF();
         OSTimeDlyHMSM(0u, 0u, 0u, 500u,
                   OS_OPT_TIME_HMSM_STRICT,
                   &err);
-        // usart1_send_string("hhh jjj%d",-100);
-        // LED_RED_ON();
         USART1_Send(0xee);
         LED_GREEN_OFF();
         OSTimeDlyHMSM(0u, 0u, 0u, 500u,

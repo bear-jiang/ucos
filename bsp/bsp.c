@@ -357,7 +357,7 @@ void  BSP_Init (void)
     LED_Init();                                            /* Initialize user LEDs                                 */
     USART1_Init(115200);
     TIM4_Config();
-    I2C1_Init();
+    I2c_Soft_Init();
     MPU6050Init();
 #ifdef TRACE_EN                                                 /* See project / compiler preprocessor options.         */
     BSP_CPU_REG_DBGMCU_CR |=  BSP_DBGMCU_CR_TRACE_IOEN_MASK;    /* Enable tracing (see Note #2).                        */

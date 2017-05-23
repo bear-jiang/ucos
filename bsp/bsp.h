@@ -79,6 +79,9 @@
 #include <USART.h>
 #include <PWM.h> 
 #include <MPU6050.h>
+#include <AK8975.h>
+#include <MS5611.h>
+#include <I2C_Soft.h>
 /*
 *********************************************************************************************************
 *                                               CONSTANTS
