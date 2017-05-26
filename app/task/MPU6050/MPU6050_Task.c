@@ -7,11 +7,14 @@ CPU_STK      MPU6050_TaskStk[APP_CFG_TASK_MPU6050_STK_SIZE];
 void MPU6050_Task()
 {
 	OS_ERR  err;
+	I2C_FastMode=1;
 	while(DEF_TRUE)
 	{
 		MPU6050GetGyro(&gyro);
 		MPU6050GetAcc(&acc);
-		// USART1_Send(gyro.x_data>>8);
+		// GyroAccValuePrint();
+		ValueProtocalPrint((char*)&gyro,sizeof(gyro),GYRO_ID);
+		ValueProtocalPrint((char*)&acc,sizeof(acc),ACC_ID);
 		OSTimeDlyHMSM(0u, 0u, 0u, 10u,
 	                  OS_OPT_TIME_HMSM_STRICT,
 	                  &err);

@@ -11,7 +11,6 @@ void MS5611_Task()
 	while(DEF_TRUE)
 	{
 		MS5611_Read_Adc_P();
-		USART1_Send(baro.p[1]);
 		OSTimeDlyHMSM(0u, 0u, 0u, 10u,
 	                  OS_OPT_TIME_HMSM_STRICT,
 	                  &err);

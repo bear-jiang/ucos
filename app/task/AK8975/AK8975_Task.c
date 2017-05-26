@@ -1,8 +1,9 @@
 #include <AK8975_Task.h>
-#define  APP_CFG_TASK_AK8975_PRIO          4u
+#define  APP_CFG_TASK_AK8975_PRIO          5u
 #define  APP_CFG_TASK_AK8975_STK_SIZE 		512
 OS_TCB       AK8975_TaskTCB;
 CPU_STK      AK8975_TaskStk[APP_CFG_TASK_AK8975_STK_SIZE];
+
 
 void AK8975_Task()
 {
@@ -11,7 +12,7 @@ void AK8975_Task()
 	while(DEF_TRUE)
 	{
 		GetMag(&mag);
-		// USART1_Send(mag.x_data&0xff);
+		// MagValuePrint();
 		OSTimeDlyHMSM(0u, 0u, 0u, 10u,
 	                  OS_OPT_TIME_HMSM_STRICT,
 	                  &err);

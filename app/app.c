@@ -149,7 +149,6 @@ static  void  AppTaskStart (void *p_arg)
     CPU_IntDisMeasMaxCurReset();
 #endif
     APP_TRACE_DBG(("Creating Application Kernel Objects\n\r"));
-    // SensorTaskCreate();                                             /* Create Applicaiton kernel objects                    */
     MPU6050_TaskCreate();
     AK8975_TaskCreate();
     MS5611_TaskCreate();
@@ -160,7 +159,7 @@ static  void  AppTaskStart (void *p_arg)
         OSTimeDlyHMSM(0u, 0u, 0u, 500u,
                   OS_OPT_TIME_HMSM_STRICT,
                   &err);
-        USART1_Send(0xee);
+        // USART1_Send(0xee);
         LED_GREEN_OFF();
         OSTimeDlyHMSM(0u, 0u, 0u, 500u,
                   OS_OPT_TIME_HMSM_STRICT,
