@@ -130,6 +130,36 @@ int main(void)
 *********************************************************************************************************
 */
 
+
+static void TIM6_DAC_IRQHandler(void)  
+{
+    
+    if (TIM_GetITStatus(TIM6,TIM_IT_Update)!= RESET) 
+    {
+        static uint16_t count=0;
+        OS_ERR  err;
+        TIM_ClearITPendingBit(TIM6,TIM_IT_Update);
+        TIM_ClearFlag(TIM6, TIM_FLAG_Update);
+        OSSemPost(&MPU6050_RunSem,
+                  OS_OPT_POST_1,
+                  &err);
+        // count++;
+        // if(count==1000)
+        // {
+        //     USART1_Send(0x01);
+        //     count=0;
+        // }
+        
+    }
+}
+
+static void Timer6_IRQ()
+{
+    BSP_IntVectSet(BSP_INT_ID_TIM6_DAC,TIM6_DAC_IRQHandler);
+    BSP_IntPrioSet(BSP_INT_ID_TIM6_DAC,9);
+    TIM_ITConfig(TIM6, TIM_IT_Update,ENABLE);
+}
+
 static  void  AppTaskStart (void *p_arg)
 {
     OS_ERR  err;
@@ -152,6 +182,7 @@ static  void  AppTaskStart (void *p_arg)
     MPU6050_TaskCreate();
     AK8975_TaskCreate();
     MS5611_TaskCreate();
+    TIM6_Init(Timer6_IRQ);
     APP_TRACE_DBG(("Creating Application Tasks\n\r"));
 
     while (DEF_TRUE) {                                          /* Task body, always written as an infinite loop.       */
@@ -159,14 +190,12 @@ static  void  AppTaskStart (void *p_arg)
         OSTimeDlyHMSM(0u, 0u, 0u, 500u,
                   OS_OPT_TIME_HMSM_STRICT,
                   &err);
-        // USART1_Send(0xee);
         LED_GREEN_OFF();
         OSTimeDlyHMSM(0u, 0u, 0u, 500u,
                   OS_OPT_TIME_HMSM_STRICT,
                   &err);
     }
 }
-
 
 
 

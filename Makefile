@@ -11,7 +11,7 @@ LDFLAGS += -L /home/bear/gcc-arm-none-eabi-5_4-2016q2/arm-none-eabi/lib/thumb/
 LDFLAGS += -L /home/bear/gcc-arm-none-eabi-5_4-2016q2/lib/gcc/arm-none-eabi/5.4.1/armv7-m
 CFLAGS = -g -mtune=cortex-m4 -mthumb -std=c99 -fdata-sections -mfloat-abi=soft \
  -march=armv7-m -mthumb-interwork -mapcs-frame
-CPPFLAGS = -DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DSTM32F407xx 
+CPPFLAGS = -DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DSTM32F407xx -D_UCOS
 export CFLAGS CPPFLAGS
 
 
